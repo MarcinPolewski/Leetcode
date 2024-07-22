@@ -54,3 +54,36 @@ public:
         return vector<int>();
     }
 };
+
+// ===============================================
+
+// iterete throught list, check if seeked element has been encoutered already
+// if so return solution
+// else add to found elements
+
+class Solution
+{
+public:
+    vector<int> twoSum(vector<int> &nums, int target)
+    {
+        unordered_map<int, int> encounteredNums;
+        vector<int> answer;
+
+        for (int i = 0; i < nums.size(); ++i)
+        {
+            int seekedValue = target - nums[i];
+            auto foundElementIt = encounteredNums.find(seekedValue);
+
+            if (foundElementIt == encounteredNums.end()) // seeked element has not been encounreted
+            {
+                encounteredNums[nums[i]] = i;
+            }
+            else
+            {
+                return vector<int>{i, foundElementIt->second};
+            }
+        }
+
+        return vector<int>();
+    }
+};
